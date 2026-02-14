@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElbowAgents — Coming Soon</title>
-    <meta name="description" content="AI that rolls up its sleeves — so you don't have to. Calgary's done-for-you AI assistant.">
+    <title>ElbowAgents — AI Solutions for Calgary</title>
+    <meta name="description" content="AI that rolls up its sleeves — so you don't have to. Calgary's done-for-you AI agents.">
     
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -38,6 +36,111 @@
             color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+            margin: 0;
+        }
+        
+        /* Northern Lights Aurora */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            mask-image: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,1) 30%, 
+                rgba(0,0,0,0.8) 50%,
+                rgba(0,0,0,0.4) 70%,
+                rgba(0,0,0,0) 100%
+            );
+            -webkit-mask-image: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,1) 30%, 
+                rgba(0,0,0,0.8) 50%,
+                rgba(0,0,0,0.4) 70%,
+                rgba(0,0,0,0) 100%
+            );
+        }
+        
+        .aurora-wave {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            left: -50%;
+            border-radius: 40%;
+            filter: blur(60px);
+            opacity: 0.25;
+            animation: aurora 20s ease-in-out infinite;
+        }
+        
+        .aurora-wave-1 {
+            top: 15%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 150, 0.25), rgba(0, 200, 255, 0.15), transparent);
+            animation-delay: 0s;
+        }
+        
+        .aurora-wave-2 {
+            top: 30%;
+            background: linear-gradient(90deg, transparent, rgba(100, 50, 200, 0.2), rgba(0, 255, 200, 0.15), transparent);
+            animation-delay: -7s;
+        }
+        
+        .aurora-wave-3 {
+            top: 45%;
+            background: linear-gradient(90deg, transparent, rgba(0, 180, 255, 0.15), rgba(50, 100, 255, 0.1), transparent);
+            animation-delay: -14s;
+        }
+        
+        @keyframes aurora {
+            0%, 100% { transform: translateX(-15%) rotate(-2deg); }
+            50% { transform: translateX(15%) rotate(2deg); }
+        }
+        
+        /* Mountain silhouettes */
+        .mountains {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .mountain {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        
+        .mountain-1 {
+            left: -5%;
+            border-width: 0 200px 180px 200px;
+            border-color: transparent transparent rgba(10, 10, 15, 0.8) transparent;
+        }
+        
+        .mountain-2 {
+            left: 15%;
+            border-width: 0 250px 220px 250px;
+            border-color: transparent transparent rgba(15, 15, 20, 0.7) transparent;
+        }
+        
+        .mountain-3 {
+            right: 10%;
+            border-width: 0 280px 200px 280px;
+            border-color: transparent transparent rgba(12, 12, 18, 0.75) transparent;
+        }
+        
+        .mountain-4 {
+            right: -10%;
+            border-width: 0 220px 160px 220px;
+            border-color: transparent transparent rgba(10, 10, 15, 0.65) transparent;
         }
         
         /* Background grid */
@@ -59,7 +162,7 @@
             height: 600px;
             border-radius: 50%;
             filter: blur(120px);
-            opacity: 0.15;
+            opacity: 0.25;
             pointer-events: none;
             z-index: 0;
         }
@@ -86,8 +189,8 @@
         /* Container */
         .container {
             position: relative;
-            z-index: 1;
-            max-width: 900px;
+            z-index: 10;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 4rem 2rem;
             min-height: 100vh;
@@ -148,112 +251,66 @@
             font-weight: 600;
         }
         
-        /* Products */
+        /* Products Grid - 2 rows */
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin-bottom: 3rem;
         }
         
-        .product-card {
+        .product-section {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 1rem;
             padding: 1.5rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
         
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .product-card:hover {
+        .product-section:hover {
             border-color: var(--accent);
-            transform: translateY(-2px);
         }
         
-        .product-card:hover::before {
-            opacity: 1;
-        }
-        
-        .product-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
+        .product-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
         
-        .product-card h3 .icon {
-            font-size: 1.5rem;
+        .product-section h3 .icon {
+            font-size: 1.3rem;
         }
         
-        .product-card p {
+        .product-section p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 0.75rem;
+            line-height: 1.5;
         }
         
-        .product-card .price {
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .product-item:last-child {
+            border-bottom: none;
+        }
+        
+        .product-item .name {
+            font-size: 0.95rem;
+        }
+        
+        .product-item .price {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--success);
             font-weight: 500;
-        }
-        
-        /* CTA */
-        .cta-section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .cta-section h2 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .cta-section p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--accent);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px var(--accent-glow);
-        }
-        
-        .cta-button svg {
-            width: 20px;
-            height: 20px;
         }
         
         /* Features */
@@ -261,7 +318,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid var(--border);
         }
@@ -313,7 +370,7 @@
             }
         }
         
-        .logo, h1, .tagline, .products, .cta-section, .features {
+        .logo, h1, .tagline, .products, .features {
             animation: fadeInUp 0.6s ease-out forwards;
             opacity: 0;
         }
@@ -321,26 +378,41 @@
         h1 { animation-delay: 0.1s; }
         .tagline { animation-delay: 0.2s; }
         .products { animation-delay: 0.3s; }
-        .cta-section { animation-delay: 0.4s; }
-        .features { animation-delay: 0.5s; }
+        .features { animation-delay: 0.4s; }
         
         /* Mobile */
-        @media (max-width: 640px) {
-            .container {
-                padding: 2rem 1.5rem;
+        @media (max-width: 700px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-section {
+                grid-column: span 1 !important;
+                width: 100%;
             }
             
             .tagline {
                 font-size: 1.2rem;
             }
-            
-            .products {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
+    <!-- Aurora -->
+    <div class="aurora">
+        <div class="aurora-wave aurora-wave-1"></div>
+        <div class="aurora-wave aurora-wave-2"></div>
+        <div class="aurora-wave aurora-wave-3"></div>
+    </div>
+    
+    <!-- Mountains -->
+    <div class="mountains">
+        <div class="mountain mountain-1"></div>
+        <div class="mountain mountain-2"></div>
+        <div class="mountain mountain-3"></div>
+        <div class="mountain mountain-4"></div>
+    </div>
+    
     <div class="grid-bg"></div>
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
@@ -351,31 +423,48 @@
         <h1>AI that rolls up its<br><span class="highlight">sleeves</span> — so you don't have to.</h1>
         
         <p class="tagline">
-            Custom AI assistants for <strong>Calgary small businesses</strong>.<br>
-            Built. Trained. Delivered working.
+            Custom AI agents for <strong>Calgary homes & small businesses</strong>.<br>
+            Smart home automation, business workflows — built, trained, delivered working.
         </p>
         
         <div class="products">
-            <div class="product-card">
+            <!-- ScudBox -->
+            <div class="product-section">
                 <h3><span class="icon">📦</span> ScudBox</h3>
-                <p>Plug-and-play AI appliance. Custom-trained on your business.</p>
-                <div class="price">$500 one-time</div>
+                <p>Plug-and-play AI appliance. Custom-trained on your business. Smart home & business integration ready.</p>
+                <div class="product-item">
+                    <span class="name">ScudBox (new hardware)</span>
+                    <span class="price">$500</span>
+                </div>
             </div>
             
-            <div class="product-card">
-                <h3><span class="icon">🛟</span> Support</h3>
-                <p>Ongoing care, updates & optimization. Never orphaned.</p>
-                <div class="price">$49/month</div>
+            <!-- Support Tiers -->
+            <div class="product-section">
+                <h3><span class="icon">🛟</span> Support Plans</h3>
+                <p>Ongoing care, updates & optimization. Choose the level that fits your needs.</p>
+                <div class="product-item">
+                    <span class="name">Basic Support</span>
+                    <span class="price">$80/mo</span>
+                </div>
+                <div class="product-item">
+                    <span class="name">Custom Workflows + Extended</span>
+                    <span class="price">$300/mo</span>
+                </div>
             </div>
-        </div>
-        
-        <div class="cta-section">
-            <h2>Coming Soon — Q1 2026</h2>
-            <p>Be the first to know when we launch in Calgary.</p>
-            <a href="mailto:hello@elbowagents.ai?subject=Early%20Access" class="cta-button">
-                Get Early Access
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-            </a>
+            
+            <!-- Upcycle -->
+            <div class="product-section" style="grid-column: span 2;">
+                <h3><span class="icon">♻️</span> Upcycle — Give Old Hardware New Life</h3>
+                <p>We install AI on machines you already have. Even 10+ year old laptops can become powerful AI workstations.</p>
+                <div class="product-item">
+                    <span class="name">Full ScudBox OS Installation</span>
+                    <span class="price">$400</span>
+                </div>
+                <div class="product-item">
+                    <span class="name">OpenClaw (Vanilla) Installation</span>
+                    <span class="price">$250</span>
+                </div>
+            </div>
         </div>
         
         <div class="features">
