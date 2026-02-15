@@ -10,18 +10,32 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg: #0a0a0f;
-            --bg-secondary: #12121a;
-            --accent: #ff6b35;
-            --accent-glow: rgba(255, 107, 53, 0.4);
-            --text: #f0f0f5;
-            --text-muted: #8888a0;
-            --border: #2a2a3a;
-            --success: #00d4aa;
+            /* Friendly Expert Palette */
+            --blue: #2563EB;
+            --blue-light: #3B82F6;
+            --blue-deep: #1D4ED8;
+            --orange: #F97316;
+            --orange-soft: #FB923C;
+            --green: #10B981;
+            --green-mint: #34D399;
+            
+            /* Neutrals */
+            --bg: #FAFBFC;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F1F5F9;
+            --bg-section: #F1F5F9;
+            --border: #E2E8F0;
+            --text: #1E293B;
+            --text-muted: #64748B;
+            
+            /* Aliases */
+            --accent: var(--orange);
+            --accent-glow: rgba(249, 115, 22, 0.3);
+            --success: var(--green);
         }
         
         * {
@@ -31,7 +45,7 @@
         }
         
         body {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -309,7 +323,7 @@
         .product-item .price {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.95rem;
-            color: var(--success);
+            color: var(--green);
             font-weight: 500;
         }
         
@@ -398,24 +412,10 @@
     </style>
 </head>
 <body>
-    <!-- Aurora -->
-    <div class="aurora">
-        <div class="aurora-wave aurora-wave-1"></div>
-        <div class="aurora-wave aurora-wave-2"></div>
-        <div class="aurora-wave aurora-wave-3"></div>
-    </div>
-    
-    <!-- Mountains -->
-    <div class="mountains">
-        <div class="mountain mountain-1"></div>
-        <div class="mountain mountain-2"></div>
-        <div class="mountain mountain-3"></div>
-        <div class="mountain mountain-4"></div>
-    </div>
-    
-    <div class="grid-bg"></div>
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
+    <!-- Aurora & Mountains disabled for Friendly Expert light mode -->
+    <!-- <div class="aurora">...</div> -->
+    <!-- <div class="mountains">...</div> -->
+    <!-- <div class="grid-bg"></div> -->
     
     <div class="container">
         <div class="logo">ELBOW_AGENTS</div>
