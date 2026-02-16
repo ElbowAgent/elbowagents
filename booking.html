@@ -388,6 +388,40 @@
                 <div class="booking-form" id="booking-form">
                     <h4>Your details</h4>
                     <form id="booking-form-element" onsubmit="submitBooking(event)">
+                        <!-- Session Type -->
+                        <div class="form-group">
+                            <label>Session Type</label>
+                            <select id="session-type" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 0.5rem; font-family: inherit; font-size: 1rem;">
+                                <option value="">Select a session type...</option>
+                                <option value="intro">🤝 Intro Call (15 min) - Free</option>
+                                <option value="consultation">💬 Consultation (30 min) - $50</option>
+                                <option value="service">🔧 Service Visit (1 hr) - $150</option>
+                                <option value="install">🛠️ Installation (2+ hr) - $300+</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Meeting Type -->
+                        <div class="form-group">
+                            <label>Meeting Type</label>
+                            <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="meeting-type" value="remote" checked onchange="toggleAddress(false)">
+                                    📹 Remote (Video Call)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="meeting-type" value="inperson" onchange="toggleAddress(true)">
+                                    📍 In-Person
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Address (if in-person) -->
+                        <div class="form-group" id="address-group" style="display: none;">
+                            <label for="address">Meeting Address (Calgary only)</label>
+                            <input type="text" id="address" placeholder="123 Main St SE, Calgary, AB">
+                            <small style="color: var(--text-muted); font-size: 0.8rem;">Must be within Calgary city limits</small>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" required>
@@ -517,21 +551,44 @@
             renderWeek();
         }
         
+        function toggleAddress(show) {
+            document.getElementById('address-group').style.display = show ? 'block' : 'none';
+            document.getElementById('address').required = show;
+        }
+        
         function submitBooking(e) {
             e.preventDefault();
             
+            const sessionType = document.getElementById('session-type').value;
+            const meetingType = document.querySelector('input[name="meeting-type"]:checked').value;
+            const address = document.getElementById('address').value;
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const notes = document.getElementById('notes').value;
             
+            // Validate address for in-person
+            if (meetingType === 'inperson' && !address.trim()) {
+                alert('Please enter a Calgary address for in-person meetings.');
+                return;
+            }
+            
             // In production, this would send to a backend
-            console.log('Booking:', { name, email, date: selectedDate, time: selectedTime, notes });
+            console.log('Booking:', { 
+                sessionType, 
+                meetingType, 
+                address, 
+                name, 
+                email, 
+                date: selectedDate, 
+                time: selectedTime, 
+                notes 
+            });
             
             // Show confirmation
             document.getElementById('booking-form').classList.remove('active');
             document.getElementById('confirmation').classList.add('active');
             document.getElementById('confirmation-details').textContent = 
-                `${formatDate(selectedDate)} at ${selectedTime}`;
+                `${formatDate(selectedDate)} at ${selectedTime} - ${sessionType} (${meetingType})`;
         }
         
         // Initialize
