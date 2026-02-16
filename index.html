@@ -409,9 +409,75 @@
                 font-size: 1.2rem;
             }
         }
+        
+        /* Header / Nav */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(250, 251, 252, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header .logo {
+            margin-bottom: 0;
+        }
+        
+        .header-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .header-nav a {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .header-nav a.btn-login {
+            color: var(--text-muted);
+        }
+        
+        .header-nav a.btn-login:hover {
+            color: var(--text);
+            background: var(--bg-secondary);
+        }
+        
+        .header-nav a.btn-book {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .header-nav a.btn-book:hover {
+            background: #ea580c;
+        }
+        
+        /* Adjust container for fixed header */
+        .container {
+            padding-top: 6rem;
+        }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">ELBOW_AGENTS</div>
+        <nav class="header-nav">
+            <a href="login.html" class="btn-login">Login</a>
+            <a href="booking.html" class="btn-book">Book a Session</a>
+        </nav>
+    </header>
+    
     <!-- Aurora disabled for light mode -->
     <!-- Mountains: Calgary tether -->
     <div class="mountains">
