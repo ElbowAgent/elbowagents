@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElbowAgents — Dashboard</title>
+    <meta name="description" content="Your ElbowAgents dashboard">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --blue: #2563EB;
+            --blue-light: #3B82F6;
+            --orange: #F97316;
+            --orange-soft: #FB923C;
+            --green: #10B981;
+            --green-mint: #34D399;
+            
+            --bg: #FAFBFC;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F1F5F9;
+            --border: #E2E8F0;
+            --text: #1E293B;
+            --text-muted: #64748B;
+            
+            --accent: var(--orange);
+            --success: var(--green);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            text-decoration: none;
+        }
+        
+        .logo::before {
+            content: '>';
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--bg-secondary);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .btn-logout {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+        
+        .btn-logout:hover {
+            border-color: var(--accent);
+        }
+        
+        /* Main */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .welcome {
+            margin-bottom: 2rem;
+        }
+        
+        .welcome h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .welcome p {
+            color: var(--text-muted);
+        }
+        
+        /* Quick actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .action-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .action-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        .action-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .action-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-card .sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        /* Recent activity */
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-content .title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .activity-content .time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+        
+        .empty-state .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Auth check */
+        .auth-required {
+            display: none;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .auth-required.active {
+            display: block;
+        }
+        
+        .auth-required h1 {
+            margin-bottom: 1rem;
+        }
+        
+        .auth-required p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #ea580c;
+        }
+        
+        /* Hide main content until auth */
+        .main-content {
+            display: none;
+        }
+        
+        .main-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Auth required message -->
+    <div class="auth-required active" id="auth-required">
+        <h1>🔐 Please Sign In</h1>
+        <p>You need to be logged in to access your dashboard.</p>
+        <a href="login.html" class="btn-primary">Sign In</a>
+    </div>
+    
+    <!-- Main dashboard content -->
+    <div class="main-content" id="main-content">
+        <header class="header">
+            <a href="index.html" class="logo">ELBOW_AGENTS</a>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="booking.html">Book Session</a>
+                <div class="user-menu">
+                    <div class="user-avatar" id="user-avatar">?</div>
+                    <button class="btn-logout" onclick="logout()">Sign Out</button>
+                </div>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="welcome">
+                <h1 id="welcome-name">Welcome!</h1>
+                <p>Here's an overview of your account</p>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <a href="booking.html" class="action-card">
+                    <h3>📅 Book a Session</h3>
+                    <p>Schedule a consultation</p>
+                </a>
+                <a href="index.html" class="action-card">
+                    <h3>🏠 View Services</h3>
+                    <p>Explore what we offer</p>
+                </a>
+                <a href="mailto:hello@elbowagents.ai" class="action-card">
+                    <h3>💬 Get Support</h3>
+                    <p>Contact us anytime</p>
+                </a>
+            </div>
+            
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="label">Active Agents</div>
+                    <div class="value">0</div>
+                    <div class="sub">Your deployed AI agents</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Sessions</div>
+                    <div class="value">0</div>
+                    <div class="sub">Consultations booked</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Support Plan</div>
+                    <div class="value">—</div>
+                    <div class="sub">Not subscribed</div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="section">
+                <h2>📋 Recent Activity</h2>
+                <div id="activity-list">
+                    <div class="empty-state">
+                        <div class="icon">📭</div>
+                        <p>No recent activity yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10/8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10/8.0/firebase-auth-compat.js"></script>
+    
+    <script>
+        // Firebase config - REPLACE WITH YOUR ACTUAL CONFIG
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Auth state listener
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in
+                document.getElementById('auth-required').classList.remove('active');
+                document.getElementById('main-content').classList.add('active');
+                
+                // Update UI with user info
+                const name = user.displayName || user.email.split('@')[0];
+                document.getElementById('welcome-name').textContent = `Welcome, ${name}!`;
+                document.getElementById('user-avatar').textContent = name.charAt(0).toUpperCase();
+            } else {
+                // User is signed out
+                document.getElementById('auth-required').classList.add('active');
+                document.getElementById('main-content').classList.remove('active');
+            }
+        });
+        
+        function logout() {
+            firebase.auth().signOut().then(() => {
+                window.location.href = 'index.html';
+            });
+        }
+    </script>
+</body>
+</html>
