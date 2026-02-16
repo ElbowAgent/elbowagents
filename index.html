@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElbowAgents — AI Solutions for Calgary</title>
-    <meta name="description" content="AI that rolls up its sleeves — so you don't have to. Calgary's done-for-you AI agents.">
+    <title>ElbowAgents — Secure AI for Calgary Businesses</title>
+    <meta name="description" content="Custom AI agents on dedicated hardware. No risky home computers. Local Calgary support.">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     
@@ -14,7 +14,6 @@
     
     <style>
         :root {
-            /* Friendly Expert Palette */
             --blue: #2563EB;
             --blue-light: #3B82F6;
             --blue-deep: #1D4ED8;
@@ -22,8 +21,8 @@
             --orange-soft: #FB923C;
             --green: #10B981;
             --green-mint: #34D399;
+            --red: #EF4444;
             
-            /* Neutrals */
             --bg: #FAFBFC;
             --bg-card: #FFFFFF;
             --bg-secondary: #F1F5F9;
@@ -32,17 +31,12 @@
             --text: #1E293B;
             --text-muted: #64748B;
             
-            /* Aliases */
             --accent: var(--orange);
             --accent-glow: rgba(249, 115, 22, 0.3);
             --success: var(--green);
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -51,10 +45,9 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            margin: 0;
         }
         
-        /* Northern Lights Aurora */
+        /* Aurora */
         .aurora {
             position: fixed;
             top: 0;
@@ -64,20 +57,8 @@
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
-            mask-image: linear-gradient(to bottom, 
-                rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,1) 30%, 
-                rgba(0,0,0,0.8) 50%,
-                rgba(0,0,0,0.4) 70%,
-                rgba(0,0,0,0) 100%
-            );
-            -webkit-mask-image: linear-gradient(to bottom, 
-                rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,1) 30%, 
-                rgba(0,0,0,0.8) 50%,
-                rgba(0,0,0,0.4) 70%,
-                rgba(0,0,0,0) 100%
-            );
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%);
         }
         
         .aurora-wave {
@@ -114,7 +95,7 @@
             50% { transform: translateX(15%) rotate(2deg); }
         }
         
-        /* Mountain silhouettes */
+        /* Mountains */
         .mountains {
             position: fixed;
             bottom: 0;
@@ -133,284 +114,22 @@
             border-style: solid;
         }
         
-        .mountain-1 {
-            left: -5%;
-            border-width: 0 200px 180px 200px;
-            border-color: transparent transparent rgba(100, 116, 139, 0.3) transparent;
-        }
+        .mountain-1 { left: -5%; border-width: 0 200px 180px 200px; border-color: transparent transparent rgba(100, 116, 139, 0.3) transparent; }
+        .mountain-2 { left: 15%; border-width: 0 250px 220px 250px; border-color: transparent transparent rgba(71, 85, 105, 0.25) transparent; }
+        .mountain-3 { right: 10%; border-width: 0 280px 200px 280px; border-color: transparent transparent rgba(100, 116, 139, 0.28) transparent; }
+        .mountain-4 { right: -10%; border-width: 0 220px 160px 220px; border-color: transparent transparent rgba(71, 85, 105, 0.22) transparent; }
         
-        .mountain-2 {
-            left: 15%;
-            border-width: 0 250px 220px 250px;
-            border-color: transparent transparent rgba(71, 85, 105, 0.25) transparent;
-        }
-        
-        .mountain-3 {
-            right: 10%;
-            border-width: 0 280px 200px 280px;
-            border-color: transparent transparent rgba(100, 116, 139, 0.28) transparent;
-        }
-        
-        .mountain-4 {
-            right: -10%;
-            border-width: 0 220px 160px 220px;
-            border-color: transparent transparent rgba(71, 85, 105, 0.22) transparent;
-        }
-        
-        /* Background grid */
+        /* Grid */
         .grid-bg {
             position: fixed;
             inset: 0;
-            background-image: 
-                linear-gradient(rgba(255,107,53,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,107,53,0.03) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(255,107,53,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,53,0.03) 1px, transparent 1px);
             background-size: 60px 60px;
             pointer-events: none;
             z-index: 0;
         }
         
-        /* Ambient glow */
-        .glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.25;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .glow-1 {
-            top: -200px;
-            right: -200px;
-            background: var(--accent);
-            animation: float 20s ease-in-out infinite;
-        }
-        
-        .glow-2 {
-            bottom: -300px;
-            left: -200px;
-            background: #00d4aa;
-            animation: float 25s ease-in-out infinite reverse;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 30px); }
-        }
-        
-        /* Container */
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        /* Logo */
-        .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem;
-            color: var(--accent);
-            letter-spacing: 0.2em;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .logo::before {
-            content: '>';
-            animation: blink 1s step-end infinite;
-        }
-        
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-        
-        /* Hero */
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text) 0%, var(--text-muted) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        h1 .highlight {
-            background: linear-gradient(135deg, var(--accent) 0%, #ff8f5a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .tagline {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            font-weight: 300;
-        }
-        
-        .tagline strong {
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        /* Products Grid - 2 rows */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .product-section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .product-section:hover {
-            border-color: var(--accent);
-        }
-        
-        .product-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .product-section h3 .icon {
-            font-size: 1.3rem;
-        }
-        
-        .product-section p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.5;
-        }
-        
-        .product-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .product-item:last-child {
-            border-bottom: none;
-        }
-        
-        .product-item .name {
-            font-size: 0.95rem;
-        }
-        
-        .product-item .price {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            color: var(--green);
-            font-weight: 500;
-        }
-        
-        /* Features */
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-        }
-        
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        .feature svg {
-            width: 18px;
-            height: 18px;
-            color: var(--success);
-        }
-        
-        /* Footer */
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-        
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        
-        footer .disclaimer {
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-            opacity: 0.6;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .logo, h1, .tagline, .products, .features {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-        
-        h1 { animation-delay: 0.1s; }
-        .tagline { animation-delay: 0.2s; }
-        .products { animation-delay: 0.3s; }
-        .features { animation-delay: 0.4s; }
-        
-        /* Mobile */
-        @media (max-width: 700px) {
-            .products {
-                grid-template-columns: 1fr;
-            }
-            
-            .product-section {
-                grid-column: span 1 !important;
-                width: 100%;
-            }
-            
-            .tagline {
-                font-size: 1.2rem;
-            }
-        }
-        
-        /* Header / Nav */
+        /* Header */
         .header {
             position: fixed;
             top: 0;
@@ -426,9 +145,15 @@
             border-bottom: 1px solid var(--border);
         }
         
-        .header .logo {
-            margin-bottom: 0;
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            text-decoration: none;
         }
+        
+        .logo::before { content: '>'; }
         
         .header-nav {
             display: flex;
@@ -444,42 +169,379 @@
             transition: all 0.2s ease;
         }
         
-        .header-nav a.btn-login {
+        .header-nav a.btn-login { color: var(--text-muted); }
+        .header-nav a.btn-login:hover { color: var(--text); background: var(--bg-secondary); }
+        .header-nav a.btn-book { background: var(--accent); color: white; }
+        .header-nav a.btn-book:hover { background: #ea580c; }
+        
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 7rem 2rem 4rem;
+        }
+        
+        /* Problem First Hero */
+        .hero-problem {
+            margin-bottom: 3rem;
+        }
+        
+        .problem-label {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--red);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 .highlight {
+            color: var(--accent);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Problem Cards */
+        .problem-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--red);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .problem-card .icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .problem-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .problem-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Solution Section */
+        .solution-section {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 1px solid var(--green);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .solution-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .solution-section h2 .checkmark {
+            color: var(--green);
+        }
+        
+        .solution-section ul {
+            list-style: none;
+        }
+        
+        .solution-section li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .solution-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .solution-section li .check {
+            color: var(--green);
+            font-weight: bold;
+        }
+        
+        /* Why Not Section */
+        .why-not {
+            margin-bottom: 3rem;
+        }
+        
+        .why-not h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
             color: var(--text-muted);
         }
         
-        .header-nav a.btn-login:hover {
-            color: var(--text);
-            background: var(--bg-secondary);
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
         
-        .header-nav a.btn-book {
+        .comparison-card {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+        }
+        
+        .comparison-card.bad {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        .comparison-card.good {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .comparison-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .comparison-card.bad h3 { color: var(--red); }
+        .comparison-card.good h3 { color: var(--green); }
+        
+        .comparison-card ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .comparison-card li {
+            padding: 0.25rem 0;
+        }
+        
+        /* Products */
+        .products h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        .product-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(249, 115, 22, 0.03) 100%);
+        }
+        
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .product-card .desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .product-features li {
+            padding: 0.35rem 0;
+            color: var(--text-muted);
+        }
+        
+        .product-features li::before {
+            content: '✓ ';
+            color: var(--green);
+        }
+        
+        .product-price {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .product-price .note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+        
+        /* Trust signals */
+        .trust-signals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .trust-item .icon {
+            color: var(--green);
+        }
+        
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-section p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: none;
+        }
+        
+        .btn-primary {
             background: var(--accent);
             color: white;
         }
         
-        .header-nav a.btn-book:hover {
+        .btn-primary:hover {
             background: #ea580c;
+            transform: translateY(-1px);
         }
         
-        /* Adjust container for fixed header */
-        .container {
-            padding-top: 6rem;
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        footer .disclaimer {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 700px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">ELBOW_AGENTS</div>
-        <nav class="header-nav">
-            <a href="login.html" class="btn-login">Login</a>
-            <a href="booking.html" class="btn-book">Book a Session</a>
-        </nav>
-    </header>
+    <div class="aurora">
+        <div class="aurora-wave aurora-wave-1"></div>
+        <div class="aurora-wave aurora-wave-2"></div>
+        <div class="aurora-wave aurora-wave-3"></div>
+    </div>
     
-    <!-- Aurora disabled for light mode -->
-    <!-- Mountains: Calgary tether -->
     <div class="mountains">
         <div class="mountain mountain-1"></div>
         <div class="mountain mountain-2"></div>
@@ -487,83 +549,162 @@
         <div class="mountain mountain-4"></div>
     </div>
     
+    <header class="header">
+        <a href="index.html" class="logo">ELBOW_AGENTS</a>
+        <nav class="header-nav">
+            <a href="login.html" class="btn-login">Login</a>
+            <a href="booking.html" class="btn-book">Book a Session</a>
+        </nav>
+    </header>
+    
     <div class="container">
-        <!-- Logo removed - now in header only -->
-        
-        <h1>🤖 AI that rolls up its<br><span class="highlight">sleeves</span> — so you don't have to.</h1>
-        
-        <p class="tagline">
-            Custom AI agents for <strong>Calgary homes & small businesses</strong>.<br>
-            Smart home automation, business workflows — built, trained, delivered working.
-        </p>
-        
-        <div class="products">
-            <!-- ScudBox -->
-            <div class="product-section">
-                <h3><span class="icon">📦</span> ScudBox</h3>
-                <p>Plug-and-play AI appliance. Custom-trained on your business. Smart home & business integration ready.</p>
-                <div class="product-item">
-                    <span class="name">ScudBox (new hardware)</span>
-                    <span class="price">$500</span>
-                </div>
-            </div>
+        <!-- PROBLEM SECTION -->
+        <section class="hero-problem">
+            <span class="problem-label">⚠️ Security Alert for Small Businesses</span>
             
-            <!-- Support Tiers -->
-            <div class="product-section">
-                <h3><span class="icon">🛟</span> Support Plans</h3>
-                <p>Ongoing care, updates & optimization. Choose the level that fits your needs.</p>
-                <div class="product-item">
-                    <span class="name">Basic Support</span>
-                    <span class="price">$80/mo</span>
-                </div>
-                <div class="product-item">
-                    <span class="name">Custom Workflows + Extended</span>
-                    <span class="price">$300/mo</span>
-                </div>
-            </div>
+            <h1>Is Your AI Running on Someone's <span class="highlight">Living Room Computer?</span></h1>
             
-            <!-- Upcycle -->
-            <div class="product-section" style="grid-column: span 2;">
-                <h3><span class="icon">♻️</span> Upcycle — Give Old Hardware New Life</h3>
-                <p>We install AI on machines you already have. Even 10+ year old laptops can become powerful AI workstations.</p>
-                <div class="product-item">
-                    <span class="name">Full ScudBox OS Installation</span>
-                    <span class="price">$400</span>
+            <p class="hero-subtitle">
+                Most "AI agents" run on personal laptops in someone's home — no security, no backups, no accountability. Your business data deserves better.
+            </p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="icon">🔓</span>
+                    <div>
+                        <h3>Your data on random computers</h3>
+                        <p>When someone runs AI on their personal machine, your customer data, passwords, and business secrets are on hardware with no security hardening.</p>
+                    </div>
                 </div>
-                <div class="product-item">
-                    <span class="name">OpenClaw (Vanilla) Installation</span>
-                    <span class="price">$250</span>
+                
+                <div class="problem-card">
+                    <span class="icon">💸</span>
+                    <div>
+                        <h3>No SLA = No recourse</h3>
+                        <p>Freelancers disappear. Personal computers crash. No contracts, no backups, no support — just a prayer your data survives.</p>
+                    </div>
+                </div>
+                
+                <div class="problem-card">
+                    <span class="icon">🔧</span>
+                    <div>
+                        <h3>SMBs left to figure it out alone</h3>
+                        <p>Big companies have IT teams. You get a PDF tutorial and a Discord link. Good luck when something breaks at 11pm.</p>
+                    </div>
                 </div>
             </div>
+        </section>
+        
+        <!-- SOLUTION SECTION -->
+        <section class="solution-section">
+            <h2><span class="checkmark">✓</span> Here's the Better Way</h2>
+            <ul>
+                <li><span class="check">✓</span> <strong>Dedicated hardware</strong> — Your AI lives on enterprise-grade equipment, not someone's old gaming PC</li>
+                <li><span class="check">✓</span> <strong>Local Calgary support</strong> — Real humans who answer the phone, based right here in YYC</li>
+                <li><span class="check">✓</span> <strong>No subscriptions</strong> — You own the hardware, you own the AI. No monthly rent.</li>
+                <li><span class="check">✓</span> <strong>Security hardened</strong> — Proper firewall, encryption, backups. The stuff SMBs usually miss.</li>
+            </ul>
+        </section>
+        
+        <!-- WHY NOT COMPARISON -->
+        <section class="why-not">
+            <h2>🤔 But what about...</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card bad">
+                    <h3>❌ Personal Computer AI</h3>
+                    <ul>
+                        <li>• Running on consumer hardware</li>
+                        <li>• No security configuration</li>
+                        <li>• No backup strategy</li>
+                        <li>• Random person liable</li>
+                        <li>• Disappears when they get busy</li>
+                        <li>• "Just restart" tech support</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card good">
+                    <h3>✅ ElbowAgents</h3>
+                    <ul>
+                        <li>• Dedicated appliance hardware</li>
+                        <li>• Security best practices built-in</li>
+                        <li>• Backup & recovery included</li>
+                        <li>• Local business accountability</li>
+                        <li>• Ongoing support contracts</li>
+                        <li>• Priority response times</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PRODUCTS -->
+        <section class="products">
+            <h2>Your Options</h2>
+            
+            <div class="products-grid">
+                <!-- ScudBox -->
+                <div class="product-card featured">
+                    <h3>📦 ScudBox <span style="color: var(--accent); font-size: 0.8rem;">Most Popular</span></h3>
+                    <p class="desc">Plug-and-play AI appliance. Custom-trained on your business. Powers your smart home or business workflows.</p>
+                    <ul class="product-features">
+                        <li>Dedicated hardware — not a laptop</li>
+                        <li>Pre-configured security</li>
+                        <li>Auto-updates</li>
+                        <li>Privacy-first (local processing)</li>
+                    </ul>
+                    <div class="product-price">$500 <span class="note">one-time</span></div>
+                </div>
+                
+                <!-- Upcycle -->
+                <div class="product-card">
+                    <h3>♻️ Upcycle</h3>
+                    <p class="desc">We install AI on hardware you already have. That old computer becomes a secure AI workstation.</p>
+                    <ul class="product-features">
+                        <li>Full ScudBox OS install</li>
+                        <li>Security hardening included</li>
+                        <li>Perfect for tight budgets</li>
+                        <li>Works with existing hardware</li>
+                    </ul>
+                    <div class="product-price">$400 <span class="note">one-time</span></div>
+                </div>
+                
+                <!-- Support Plans -->
+                <div class="product-card">
+                    <h3>🛟 Support Plans</h3>
+                    <p class="desc">Ongoing care so your AI keeps working. Updates, optimization, and someone to call.</p>
+                    <ul class="product-features">
+                        <li>Monthly security patches</li>
+                        <li>Priority support</li>
+                        <li>Workflow optimizations</li>
+                        <li>Calgary-based team</li>
+                    </ul>
+                    <div class="product-price">$80/mo <span class="note">or $300/mo for custom</span></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- TRUST SIGNALS -->
+        <div class="trust-signals">
+            <div class="trust-item"><span class="icon">✓</span> Calgary Owned</div>
+            <div class="trust-item"><span class="icon">✓</span> No Subscription Required</div>
+            <div class="trust-item"><span class="icon">✓</span> Privacy-First Architecture</div>
+            <div class="trust-item"><span class="icon">✓</span> Fixed Pricing</div>
         </div>
         
-        <div class="features">
-            <div class="feature">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                No subscriptions required
+        <!-- CTA -->
+        <section class="cta-section">
+            <h2>Ready to get started?</h2>
+            <p>Book a free 15-minute intro call. We'll see if we're a fit.</p>
+            <div class="cta-buttons">
+                <a href="booking.html" class="btn btn-primary">📅 Book Free Intro</a>
+                <a href="mailto:hello@elbowagents.ai" class="btn btn-secondary">✉️ Email Us</a>
             </div>
-            <div class="feature">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Local Calgary support
-            </div>
-            <div class="feature">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Privacy-first architecture
-            </div>
-            <div class="feature">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Fixed pricing, no surprises
-            </div>
-        </div>
+        </section>
         
         <footer>
             <p>📍 Calgary, Alberta, Canada</p>
             <p><a href="mailto:hello@elbowagents.ai">hello@elbowagents.ai</a></p>
             <p class="disclaimer">Independent local business. Not affiliated with OpenClaw.</p>
-            <div style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: center;">
-                <a href="login.html" style="color: var(--accent); text-decoration: none; font-size: 0.85rem;">Login</a>
-                <a href="booking.html" style="color: var(--accent); text-decoration: none; font-size: 0.85rem;">Book a Session</a>
-            </div>
         </footer>
     </div>
 </body>
